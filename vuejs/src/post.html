@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>John Gkikas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">John Gkikas - My Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="post-heading">
+                        <h1 style="text-shadow: 2px 2px black;">Remote code deployment with SSH and Platform.io</h1>
+                        <h2 style="text-shadow: 2px 2px black;" class="subheading">On a Raspberry Pi + microcontrollers</h2>
+                        <span style="text-shadow: 2px 2px black;" class="meta">Initially posted on August 14, 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-lg-offset-1">
+                    <p>
+
+                      Hello and welcome to my guide!
+                      What is this about?
+                      Making your life a tad bit easier.
+                      Tired of plugging devices back and forth after a small change?
+                      Tired of latency when using the pi remotely?
+                      Tired of having to attend to a pile of devices at your workstation and filling up your desk creating a spatial chaos?
+                      Want to learn some more industrial standards and practises while making your life more convenient?
+                    </P>
+                    <p>
+                      This is for you!
+                    </p>
+                    <p>
+
+                      For all of you using a Raspberry Pi to tinker with IoT and microcontrollers and at the same time leaving the raspberry pi at the same spot and never picking it up (unless you want to make something else afterwards)
+                    </p>
+                    <p>After this you will be able to :
+                    </p>
+                      <div class="list-group">
+                      <a href="#" class="list-group-item">Use the raspberry remotely through SSH, no need to even use a Graphical User Interface</a>
+                      <a href="#" class="list-group-item">Edit code on your own station and push it to your repository on your pi</a>
+                      <a href="#" class="list-group-item">Use platform.io to upload code to your favorite microcontrollers (arduino, nodemcu, etc)
+                      remotely and debug</a>
+                      <a href="#" class="list-group-item">Use your new setup from anywhere in the world!</a>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <p>
+                      First thing is first :
+                      Make sure you have at least a working Pi and a microcontroller.
+                      Also you will be needing a wifi dongle for your pi (or at least a spare lan cable if you want to use it less remotely)
+                      Depending on your microcontroller, you will need an additional component to test your code/sketch. </p>
+
+                        <div class="col-md-4">
+                          <div class="thumbnail">
+                            <a href="img\screens\20883675_10155305046711130_876861971_o.jpg">
+                              <img src="img\screens\20883675_10155305046711130_876861971_o.jpg" alt="Lights" style="width:100%">
+                            </a>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="thumbnail">
+                            <a href="img\screens\20883394_10155305046836130_1822447654_o.jpg">
+                              <img src="img\screens\20883394_10155305046836130_1822447654_o.jpg" alt="Nature" style="width:100%">
+                            </a>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="thumbnail">
+                            <a href="img\screens\20883675_10155305046711130_876861971_o.jpg">
+                              <img src="img\screens\20883675_10155305046711130_876861971_o.jpg" alt="Fjords" style="width:100%">
+                            </a>
+                          </div>
+                        </div>
+                        <span class="caption text-muted">Here I am using a raspberry pi 1 and an arduino nano. Ignore the rest of the parts (or not, another article is coming up shortly!)</span>
+
+
+                        <p>
+                      Connect your microcontroller to your Pi. </p>
+
+                      <p>If you haven't already, <a href="http://www.circuitbasics.com/raspberry-pi-basics-setup-without-monitor-keyboard-headless-mode/">set up a fresh installation of raspbian on an SD card</a>
+                        and power up the pi. then setup your pi for <a href="http://www.circuitbasics.com/raspberry-pi-wifi-installing-wifi-dongle/">wifi</a> (optional, skip this if you are using a lan cable).
+                      Additional step, check your connected devices to your router ( by default, you can enter your router interface by surfing to 192.168.1.1 on your favourite browser. If it fails, check <a href="http://uk.pcmag.com/feature/83093/how-to-access-your-wi-fi-routers-settings">this</a>
+                      and assign a permanent ip address to your pi.
+                      I recommend to change your default password.</p>
+
+                      <p>
+                      Next up we are going to check how the PI is interacting with your usb connected microcontroller.
+                      Plug in your microcontroller into the pi, ssh into your pi and type </p>
+                      <blockquote> ls /dev </blockquote>
+
+                        <a href="#">
+                            <img class="img-responsive" src="img/screens/Screenshot_1.jpg" style="width:100%"alt="">
+                        </a>
+                        <span class="caption text-muted">The device (when plugged via USB) should show on the list as dev/ttyUSB0 or dev/ttyACM0 or similar (with other numbers)</span>
+
+
+                      If for some reason you cannot see a difference, unplug your USB device,type </p>
+                      <blockquote> dmesg -wH </blockquote>
+
+                      <p>
+                      and plug it back in. See if there is any update on the text. <image> Try googling with whatever information shows up there.
+                      Also make sure your usb cable is not only for charging.
+
+                      after you have identified the device's name, note it down.</p>
+
+                      <br>
+                      <h2> Setting Up Git on your Pi </h2>
+
+                      <p>Personally I use GitKraken on my machines but it is still good to know CLI commands (for situations like this for example).
+
+                      Install Git on your Pi by typing </p>
+                      <blockquote>sudo apt-get install git</blockquote>
+                      <p>
+
+                      Next you want to create a new repository on your favourite service (GitHub, GitLab etc)
+                       and then clone it somewhere on your pi.
+
+                       The specifics of how each service works differs slightly. As an example, check the GitLab instructions <a href="https://docs.gitlab.com/ce/ssh/README.html">here</a>
+
+                      then test that everything is working by typing </p>
+                      <blockquote> git status </blockquote>
+
+                      <p>
+                      Read <a href="https://git-scm.com/book/en/v2">this</a> awesome material on Git, to help you become a Git power user! </p>
+
+                      <br>
+                      <h2>Setup Platformio</h2>
+
+                      <p>What is Platformio? Here is what their own docs say about it : </p>
+
+                      <blockquote> This is cross platform code builder and library manager with platforms like Arduino or MBED support. They took care of toolchains, debuggers, frameworks that work on most popular platforms like Windows, Mac and Linux. It supports more than 200 development boards along with more than 15 development platforms and 10 frameworks. </blockquote>
+                      <p>
+                      The main feature here that helps us is that you can deploy your code remotely to your hardware package (here it is the RPi + Arduino) only with SSH and nothing else!
+
+                      Install it : </p>
+                      <blockquote>sudo pip install -U platformio </blockquote>
+                      <p>
+                      Then we want to initiate a platformio "project"
+                      Navigate to your repository on your Pi: </p>
+
+                      <blockquote> cd /directory/to/your/repo </blockquote>
+                      <p>
+                      In our case we are using an Arduino Nano Atmega328. You can find your own board by typing </p>
+                      <blockquote> platformio boards </blockquote>
+
+                      <a href="#">
+                          <img class="img-responsive" src="img/screens/Screenshot_2.jpg" style="width:100%"alt="">
+                      </a>
+
+                      <p>Write down the ID of your board.
+
+                      Next we initialise the project for your specific board. for my nano it would be : </p>
+                      <blockquote> platformio init -b nanoatmega328 </blockquote>
+                      <p>
+                      then you can notice the contents of the folder </p>
+                      <blockquote> ls -a </blockquote>
+
+                      there is a src folder and a lib folder.
+                      when you develop on your arduino IDE you have .ino sketches (or sometimes .cpp/.c and .h files) and then you have libraries that you import (for example SimpleDHT library)
+
+                      the first files go into this src folder, while the libraries go into the lib folder.
+
+                      you can now try to write a simple sketch on your main station, then push it to the repository. Then, using the SSH client, log in to your pi again, navigate to your local repository, execute </p>
+                      <blockquote> git pull </blockquote>
+                      <p>and then </p>
+                      <blockquote> platformio run -t upload </blockquote>
+                      <p>
+                      The above will try to compile your code. You can see text feedback on your console, and any errors that might come up.
+
+                      Should it be successful, you should already see the arduino executing the sketch you wrote before!
+</p>
+
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.linkedin.com/in/ioannis-gkikas-0b5a6010b/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.github.com/funkyfisch">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyleft &copy; me myself and I 2k17</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+    <script src="js/custom.js"></script>
+
+
+</body>
+
+</html>

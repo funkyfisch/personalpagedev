@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+	<h4> Temperature </h4>
+	<p id="temp"> null </p>
+<h4> Humidity </h4>
+	<p id="humidity"> null </p>
+<h4> Raspberry Temperature </h4>
+	<p id="raspberry"> null </p>
+      <script type="text/javascript">
+         function WebSocketTest()
+         {
+            if ("WebSocket" in window)
+            {
+               alert("WebSocket is supported by your Browser!");
+               
+               // Let us open a web socket
+               var ws = new WebSocket("wss://gusgkiio.hopto.org:9090");
+				
+               ws.onopen = function()
+               {
+                  // Web Socket is connected, send data using send()
+                  //ws.send("Message to send");
+                  //alert("Message is sent...");
+               };
+				
+               ws.onmessage = function (evt) 
+               { 
+                  var received_msg = evt.data;
+                  console.log(received_msg);
+		  var inc = JSON.parse(received_msg);
+		  document.getElementById("temp").innerHTML = inc.tmp;
+		  document.getElementById("humidity").innerHTML = inc.hum;
+		  document.getElementById("raspberry").innerHTML = inc.rpitemp;
+               };
+				
+               ws.onclose = function()
+               { 
+                  // websocket is closed.
+                  alert("Connection is closed..."); 
+               };
+            }
+            
+            else
+            {
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+         }
+      </script>
+		
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a href="javascript:WebSocketTest()">Run WebSocket</a>
+      </div>
+	<iframe src="gusgkiio.hopto.org:8080">
+</iframe>
+      
+   </body>
+</html>

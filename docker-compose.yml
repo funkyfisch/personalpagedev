@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+
+  personalpage-vuejs:
+    build:
+      context: .
+      dockerfile: docker/vuejs/Dockerfile
+    image: personalpage-vuejs
+    container_name: personalpage-vuejs
+    volumes:
+      - type: bind
+        source: ./vuejs/
+        target: /usr/share/app
+    ports:
+      - "9001:9001"
+    working_dir: /usr/share/app
+    command: "bash ./bin/startup.sh"
+    logging:
+      options:
+        max-size: "200k"
+        max-file: "10"
+    restart: always
